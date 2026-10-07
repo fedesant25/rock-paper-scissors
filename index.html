@@ -9,31 +9,65 @@
  the computer will simultaneously pick one between the same variables
  after which based on the results a winner and a loser can be established -->
 <body>
+
+<div id="outcomeDiv"></div>
+
 <script>
-// STEP 1 : COMPUTER CHOICE
 
-// 1. Generate a random integer: 1, 2, or 3
-const randomNum = Math.floor(Math.random() * 3) + 1;
-let computerChoice;
+let humanScore = 0;
+let computerScore = 0;
 
-// 2. Assign the choice based on the number
-if (randomNum === 1) {
-  computerChoice = 'rock';
-} else if (randomNum === 2) {
-  computerChoice = 'paper';
-} else {
-  computerChoice = 'scissors';
+// Function to get Computer's choice
+
+function getComputerChoice() {
+    const randomNum = Math.floor(Math.random() * 3) + 1;
+    if (randomNum === 1) return 'rock';
+    if (randomNum === 2) return 'paper';
+    return 'scissors';
 }
 
-// STEP 2 : HUMAN CHOICE
-
+// Function to get Human's choice
 function getHumanChoice() {
-  let choice = prompt("Please enter rock, paper, or scissors:");
-  return choice;
+    return prompt("Please enter rock, paper, or scissors:").toLowerCase();
 }
 
-// Testing the function
-console.log(getHumanChoice());
+// Logic to play one round
+function playRound() {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    
+    console.log(`Human: ${humanSelection} vs Computer: ${computerSelection}`);
+
+    
+    const outcomeDiv = document.querySelector('#outcomeDiv');
+    
+    if (humanSelection === computerSelection) {
+                outcomeDiv.textContent = "It's a tie! 🤝";
+                outcomeDiv.className = "tie"
+    } else if (humanSelection === "rock" && computerSelection == "scissors"){
+                outcomeDiv.textContent = "You win !!"
+                outcomeDiv.className = "user-wins"
+    } else if (humanSelection === "rock" && computerSelection == "paper"){
+                outcomeDiv.textContent = "You lose"
+                outcomeDiv.className = "computer-wins"
+    } else if (humanSelection === "scissors" && computerSelection == "rock"){
+                outcomeDiv.textContent = "You lose"
+                outcomeDiv.textContent = "computer-wins"
+    } else if (humanSelection === "scissors" && computerSelection == "paper"){
+                outcomeDiv.textContent = "You win !!"
+                outcomeDiv.textContent = "user-wins"
+    } else if (humanSelection === "paper" && computerSelection == "rock"){
+                outcomeDiv.textContent = "You win !!"
+                outcomeDiv.textContent = "user-wins"
+    } else if (humanSelection === "paper" && computerSelection == "scissors"){
+                outcomeDiv.textContent = "You lose"
+                outcomeDiv.textContent = "computer-wins"
+    }
+}
+
+// Start the game
+playRound();
+
 
 </script>
     
