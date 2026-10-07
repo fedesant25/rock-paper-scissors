@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- User is asked to insert an option between 'rock', 'paper', 'scissors'
+ the computer will simultaneously pick one between the same variables
+ after which based on the results a winner and a loser can be established -->
+<body>
+<script>
+// STEP 1 : COMPUTER CHOICE
+
+// 1. Generate a random integer: 1, 2, or 3
+const randomNum = Math.floor(Math.random() * 3) + 1;
+let computerChoice;
+
+// 2. Assign the choice based on the number
+if (randomNum === 1) {
+  computerChoice = 'rock';
+} else if (randomNum === 2) {
+  computerChoice = 'paper';
+} else {
+  computerChoice = 'scissors';
+}
+
+// STEP 2 : HUMAN CHOICE
+
+function getHumanChoice() {
+  let choice = prompt("Please enter rock, paper, or scissors:");
+  return choice;
+}
+
+// Testing the function
+console.log(getHumanChoice());
+
+</script>
+    
+</body>
+</html>
