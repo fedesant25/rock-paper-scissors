@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<!-- User is asked to insert an option between 'rock', 'paper', 'scissors'
- the computer will simultaneously pick one between the same variables
- after which based on the results a winner and a loser can be established -->
-<body>
 
-<div id="outcomeDiv"></div>
+<body style="margin: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+<h2 style="text-align: center;">Make your choice ...</h2>
+
+<div style="display: flex; justify-content: center; gap: 15px" class="buttons">
+<button id="rock">Rock</button>
+<button id="paper">Paper</button>
+<button id="scissors">Scissors</button>
+</div>
+
+<div id="outcomeDiv" style="margin: 50px;"></div>
 
 <script>
 
@@ -27,46 +33,67 @@ function getComputerChoice() {
 }
 
 // Function to get Human's choice
-function getHumanChoice() {
-    return prompt("Please enter rock, paper, or scissors:").toLowerCase();
-}
+
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
+
+rock.addEventListener ("click", (e) => {
+    const humanSelection = "rock";
+    const computerChoice = getComputerChoice ();
+    playRound (humanSelection, computerChoice);
+})
+
+paper.addEventListener ("click", (e) => {
+    const humanSelection = "paper";
+    const computerChoice = getComputerChoice ();
+    playRound (humanSelection, computerChoice);
+})
+
+scissors.addEventListener ("click", (e) => {
+    const humanSelection = "scissors";
+    const computerChoice = getComputerChoice ();
+    playRound (humanSelection, computerChoice);
+})
+
+
 
 // Logic to play one round
-function playRound() {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    
-    console.log(`Human: ${humanSelection} vs Computer: ${computerSelection}`);
+function playRound(humanSelection, computerChoice) {
 
-    
+    console.log(`Human: ${humanSelection} vs Computer: ${computerChoice}`);
     const outcomeDiv = document.querySelector('#outcomeDiv');
     
-    if (humanSelection === computerSelection) {
+    if (humanSelection === computerChoice) {
                 outcomeDiv.textContent = "It's a tie! 🤝";
                 outcomeDiv.className = "tie"
-    } else if (humanSelection === "rock" && computerSelection == "scissors"){
+    } else if (humanSelection === "rock" && computerChoice === "scissors"){
                 outcomeDiv.textContent = "You win !!"
                 outcomeDiv.className = "user-wins"
-    } else if (humanSelection === "rock" && computerSelection == "paper"){
+    } else if (humanSelection === "rock" && computerChoice === "paper"){
                 outcomeDiv.textContent = "You lose"
                 outcomeDiv.className = "computer-wins"
-    } else if (humanSelection === "scissors" && computerSelection == "rock"){
+    } else if (humanSelection === "scissors" && computerChoice === "rock"){
                 outcomeDiv.textContent = "You lose"
-                outcomeDiv.textContent = "computer-wins"
-    } else if (humanSelection === "scissors" && computerSelection == "paper"){
+                outcomeDiv.className = "computer-wins"
+    } else if (humanSelection === "scissors" && computerChoice === "paper"){
                 outcomeDiv.textContent = "You win !!"
                 outcomeDiv.textContent = "user-wins"
-    } else if (humanSelection === "paper" && computerSelection == "rock"){
+    } else if (humanSelection === "paper" && computerChoice === "rock"){
                 outcomeDiv.textContent = "You win !!"
                 outcomeDiv.textContent = "user-wins"
-    } else if (humanSelection === "paper" && computerSelection == "scissors"){
+    } else if (humanSelection === "paper" && computerChoice === "scissors"){
                 outcomeDiv.textContent = "You lose"
                 outcomeDiv.textContent = "computer-wins"
     }
 }
 
 // Start the game
-playRound();
+
+
+// UI
+
+
 
 
 </script>
